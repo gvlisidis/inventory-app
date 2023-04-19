@@ -1,12 +1,12 @@
 <template>
-    <div class="mt-4 md:mt-10 flex flex-col-reverse md:flex-row   md:justify-between md:items-center">
+    <div class="mt-4 md:mt-10 w-full flex flex-col-reverse md:flex-row items-start md:items-center md:justify-between">
         <div class="mt-2 md:mt-0">
             <button @click="editMode = !editMode"
                     class="rounded-md bg-red-600 text-white px-3 py-2 text-xs md:text-sm font-semibold tracking-wider">
                 Edit: <span v-if="editMode">On</span><span v-else>Off</span>
             </button>
         </div>
-        <div class="flex items-center relative w-full ">
+        <div class="flex items-center relative w-full md:w-auto">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#64748b" class="mx-2 w-4 h-4 absolute">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
