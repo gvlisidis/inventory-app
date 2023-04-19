@@ -7,13 +7,13 @@
             </svg>
             <input type="text" v-model="searchTerm"
                    name="searchTerm" placeholder="Search for item"
-                   class=" rounded-md pl-8 pr-4 py-2 border-2 border-violet-600 focus:outline-0 text-slate-800 text-xs md:text-sm w-full md:w-44 xl:w-60 2xl:w-96"
+                   class=" rounded-md pl-8 pr-4 py-2 border-2 border-violet-600 focus:outline-0 focus:border-violet-600 focus:ring-violet-600 text-slate-800 text-xs md:text-sm w-full md:w-44 xl:w-60 2xl:w-96"
             />
         </div>
     </div>
-    <div v-if="results.length !== 0 && searchTerm !== ''" class="mt-10 w-full">
+    <div v-if="results.length !== 0 && searchTerm !== ''" class="mt-4 md:mt-10 w-full">
         <h3 class="text-lg tracking-wide">Search results for item: "<span class="font-semibold">{{ searchTerm }}</span>"</h3>
-        <div class="items-grid mt-6">
+        <div class="items-grid mt-2 md:mt-6">
             <div v-for="result in results" :key="result.id" class="">
                 <ItemCard :item="result"></ItemCard>
             </div>
