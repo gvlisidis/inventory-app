@@ -16,12 +16,17 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'George Vlisidis',
-            'email' => 'gv@mail.com',
+            'email' => 'gblisidis@gmail.com',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Zina Skoufa',
+            'email' => 'zskoufa@gmail.com',
         ]);
         Model::unguard();
 
-        $this->call(BoxSeeder::class);
-        $this->call(ItemSeeder::class);
+//        $this->call(BoxSeeder::class);
+//        $this->call(ItemSeeder::class);
 
         Model::reguard();
     }
