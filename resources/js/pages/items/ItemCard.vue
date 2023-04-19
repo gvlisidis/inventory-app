@@ -40,7 +40,7 @@
                         </option>
                     </select>
                 </div>
-                <div class="flex flex-col space-y-1" v-if="needsLocation">
+                <div class="flex flex-col space-y-1" v-if="needsLocation || item.box_id === null">
                     <label for="location" class="font-semibold text-xs md:text-sm">Location</label>
                     <select name="location" id="location" v-model="item.location"
                             class="text-xs md:text-sm h-10 w-full rounded-md border border-gray-300 focus:border-indigo-300 px-1 md:px-4">
