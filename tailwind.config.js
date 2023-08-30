@@ -15,6 +15,12 @@ module.exports = {
             fontFamily: {
                 'poppins': ['Poppins', 'sans-serif']
             },
+            colors:{
+                'gray-color': '#ececec',
+                'green-color': '#9fd3c7',
+                'blue-color': '#385170',
+                'blue-dark-color': '#142d4c',
+            },
             spacing:{
                 68: '17rem',
                 'left-column': '62%',
@@ -31,6 +37,7 @@ module.exports = {
                 '1/3': '33.33333%',
                 '2/3': '66.66667%',
             },
+
         },
     },
 

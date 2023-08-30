@@ -1,6 +1,6 @@
 <template>
     <!-- Sidenav -->
-    <nav class="overflow-hidden h-screen min-h-full min-w-fit w-2/12  bg-violet-200 hidden md:block">
+    <nav class="overflow-hidden h-screen min-h-full min-w-fit w-2/12  bg-gray-color hidden md:block">
         <div class="flex flex-col justify-between h-full">
             <div class="flex flex-col">
                 <router-link to="/"

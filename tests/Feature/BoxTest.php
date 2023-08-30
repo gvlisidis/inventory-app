@@ -17,7 +17,7 @@ class BoxTest extends TestCase
 
         $response = $this->get('/api/boxes');
 
-        $response->assertStatus(302);
+        $response->assertStatus(403);
     }
 
     public function test_authenticated_users_can_get_boxes(): void
@@ -33,10 +33,11 @@ class BoxTest extends TestCase
     public function test_unauthenticated_users_cannot_create_a_box(): void
     {
         $response = $this->post('/api/boxes', [
-            'name' => 'Test name'
+            'name' => 'Test name',
+            'location' => 'Test location'
         ]);
 
-        $response->assertStatus(302);
+        $response->assertStatus(403);
     }
 
     public function test_authenticated_users_can_create_a_box(): void
@@ -86,25 +87,26 @@ class BoxTest extends TestCase
     public function test_only_authenticated_users_can_delete_a_box()
     {
         Box::factory(7)->create();
-        $boxesBefore = Box::all()->count();
+        $boxesBeforeCollection = Box::all();
+        $boxesBeforeCollectionCount = Box::all()->count();
+        $randomBox = $boxesBeforeCollection->random();
+        $idOfRandom = $randomBox->id;
 
-        $response = $this->delete('/api/boxes/2');
+        $response = $this->delete('/api/boxes/' . $randomBox->id);
 
-        $response->assertRedirect(RouteServiceProvider::HOME);
-        $this->assertEquals(7, $boxesBefore);
-        $findSecond = Box::query()->where('id', 2)->first();
-        $this->assertNotNull($findSecond);
+        $response->assertStatus(403);
+        $this->assertEquals(7, $boxesBeforeCollectionCount);
+        $findRandom = Box::query()->where('id', $idOfRandom)->first();
+        $this->assertNotNull($findRandom);
 
-        $response2 = $this->actingAs(User::factory()->create())->delete('/api/boxes/2');
+        $response2 = $this->actingAs(User::factory()->create())->delete('/api/boxes/'. $randomBox->id);
         $boxesafter = Box::all()->count();
 
-        $response2->assertRedirect(RouteServiceProvider::HOME);
+       $response2->assertStatus(204);
         $this->assertEquals(6, $boxesafter);
 
-        $findSecond = Box::query()->where('id', 2)->first();
+        $findSecond = Box::query()->where('id', $idOfRandom)->first();
 
         $this->assertNull($findSecond);
-
     }
-
 }

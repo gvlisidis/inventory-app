@@ -12,7 +12,7 @@
         </div>
     </div>
     <div v-if="results.length !== 0 && searchTerm !== ''" class="mt-4 md:mt-10 w-full">
-        <h3 class="text-lg tracking-wide">Search results for item: "<span class="font-semibold">{{ searchTerm }}</span>"</h3>
+        <h3 class="text-lg tracking-wide text-white">Search results for item: "<span class="font-semibold">{{ searchTerm }}</span>"</h3>
         <div class="items-grid mt-2 md:mt-6">
             <div v-for="result in results" :key="result.id" class="">
                 <ItemCard :item="result"></ItemCard>
@@ -68,7 +68,7 @@ import {onMounted, reactive, ref, watch} from "vue";
 import axios from "axios";
 import BoxCard from "../components/BoxCard.vue";
 import {request} from '../helpers';
-import ItemCard from "./items/ItemCard.vue";
+import ItemCard from "../components/ItemCard.vue";
 
 const boxes = ref([]);
 const locations = ref([]);
@@ -140,7 +140,7 @@ const search = async () => {
 .card-grid {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
 }
 
 .items-grid {

@@ -13,7 +13,7 @@ class BoxPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+       //
     }
 
     /**
@@ -29,7 +29,7 @@ class BoxPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return !is_null(auth()->user());
     }
 
     /**
@@ -37,7 +37,7 @@ class BoxPolicy
      */
     public function update(User $user, Box $box): bool
     {
-        //
+        return !is_null(auth()->user());
     }
 
     /**
@@ -45,7 +45,7 @@ class BoxPolicy
      */
     public function delete(User $user, Box $box): bool
     {
-        //
+        return !is_null(auth()->user());
     }
 
     /**

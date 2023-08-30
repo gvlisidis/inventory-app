@@ -1,14 +1,14 @@
 <template>
     <div class="container mx-auto mt-1 md:mt-6">
         <div class="flex flex-col">
-            <div class="flex flex-col space-y-1 md:space-y-4">
+            <div class="flex flex-col space-y-1 md:space-y-4 text-white tracking-wider">
                 <h3 class="text-sm md:text-base xl:text-lg font-bold">Box Name: <span class="ml-2">{{ box.name }}</span></h3>
                 <h3 class="text-sm md:text-base xl:text-lg font-bold">Number:  <span class="ml-2">{{ box.id }}</span></h3>
                 <h3 class="text-sm md:text-base xl:text-lg font-bold">Location:  <span class="ml-2">{{ box.location }}</span></h3>
             </div>
             <div class="sm:right-0 sm:top-0 p-1 ">
                 <div class="mt-6 flex space-x-3 md:space-x-8">
-                    <button @click.prevent="openCreateItemModal" type="button" class="text-xxs  md:ext-sm xl:text-base px-2 md:px-4 py-2 rounded-md text-white bg-violet-600 hover:bg-violet-200 hover:text-black">Add items</button>
+                    <button @click.prevent="openCreateItemModal" type="button" class="text-xxs  md:ext-sm xl:text-base px-2 md:px-4 py-2 rounded-md text-white bg-blue-color hover:bg-violet-200 hover:text-black">Add item</button>
                     <button @click.prevent="openEditBoxModal" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md bg-green-600 hover:bg-green-300 hover:text-black text-white">Edit Box</button>
                     <button @click.prevent="deleteConfirm = true" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md bg-red-600 hover:bg-red-300 hover:text-black text-white">Delete Box</button>
                 </div>
@@ -18,7 +18,7 @@
 
         <div class="items-grid mt-8 pb-8">
             <div v-for="item in box.items" :key="item.id" class="">
-                <div class="text-xs md:text-sm block mb-1 md:mb-4 p-4 border rounded shadow hover:bg-violet-600">
+                <div class="text-xs md:text-sm block mb-1 md:mb-4 p-4  rounded shadow bg-green-color  hover:bg-blue-color hover:text-white">
                     <h2 class="font-semibold tracking-wide">{{ item.name }}</h2>
                 </div>
             </div>

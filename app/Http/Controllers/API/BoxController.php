@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Actions\Box\CreateBoxAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBoxRequest;
 use App\Http\Requests\UpdateBoxRequest;
@@ -30,16 +31,17 @@ class BoxController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBoxRequest $request)
+    public function store(StoreBoxRequest $request, CreateBoxAction $action)
     {
-        $box = Box::create($request->validated());
+        $this->authorize('create', Box::class);
 
-        $uri = url("/box/{$box->id}/contents");
+        try{
+            $box = $action->handle($request->validated());
 
-        $box->uri = $uri;
-        $box->save();
-
-        return new BoxResource($box);
+            return new BoxResource($box);
+        } catch (\Exception $exception){
+            return  response()->json(['message' => 'Something went wrong.']);
+        }
     }
 
     /**
@@ -55,7 +57,7 @@ class BoxController extends Controller
      */
     public function edit(Box $box)
     {
-        //
+
     }
 
     /**
@@ -63,7 +65,6 @@ class BoxController extends Controller
      */
     public function update(UpdateBoxRequest $request, Box $box)
     {
-        //dd($request->all(), $box);
         $box->update([
             'name' => $request->name,
             'location' => $request->location,

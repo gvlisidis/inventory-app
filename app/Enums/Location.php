@@ -5,10 +5,12 @@ namespace App\Enums;
 enum Location: string
 {
     case GARAGE = 'Garage';
-    case UNDER_STAIRS = 'Under Stairs';
-    case PARENTS_WORDROBE = 'Parents Wordrobe';
-    case KLEIO_WORDROBE = 'Kleio Wordrobe';
-    case ANESTIS_WORDROBE = 'Anestis Wordrobe';
+    case UNDER_STAIRS_WARDROBE = 'Under Stairs Wardrobe';
+    case UNDER_STAIRS_1 = 'Under Stairs 1';
+    case UNDER_STAIRS_2 = 'Under Stairs 2';
+    case PARENTS_WARDROBE = 'Parents Wardrobe';
+    case KLEIO_WARDROBE = 'Kleio Wardrobe';
+    case ANESTIS_WARDROBE = 'Anestis Wardrobe';
     case STUDY_BOOKSHELVES = 'Study Bookshelves';
     case GUEST_ROOM = 'Guest Room';
     case GARDEN_SHED = 'Garden Shed';

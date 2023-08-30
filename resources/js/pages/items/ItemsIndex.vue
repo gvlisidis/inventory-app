@@ -25,9 +25,9 @@
 
 <script setup>
 import {onMounted, ref, watch} from "vue";
-import ItemCard from "./items/ItemCard.vue";
+import ItemCard from "../../components/ItemCard.vue";
 import axios from "axios";
-import {request} from "../helpers";
+import {request} from "../../helpers";
 
 const items = ref([]);
 const searchTerm = ref('');

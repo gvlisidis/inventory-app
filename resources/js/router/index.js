@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Home from "../pages/Home.vue";
-import Items from "../pages/Items.vue";
+import Items from "../pages/items/ItemsIndex.vue";
 import BoxIndex from "../pages/boxes/BoxIndex.vue";
 import QRCodesList from "../pages/QRCodesList.vue";
 import Login from "../pages/Login.vue";
