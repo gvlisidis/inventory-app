@@ -8,7 +8,7 @@
             </div>
             <div class="sm:right-0 sm:top-0 p-1 ">
                 <div class="mt-6 flex space-x-3 md:space-x-8">
-                    <button @click.prevent="openCreateItemModal" type="button" class="text-xxs  md:ext-sm xl:text-base px-2 md:px-4 py-2 rounded-md text-white bg-blue-color hover:bg-violet-200 hover:text-black">Add item</button>
+                    <button @click.prevent="openCreateItemModal" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md text-white bg-blue-color hover:bg-violet-200 hover:text-black">Add item</button>
                     <button @click.prevent="openEditBoxModal" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md bg-green-600 hover:bg-green-300 hover:text-black text-white">Edit Box</button>
                     <button @click.prevent="deleteConfirm = true" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md bg-red-600 hover:bg-red-300 hover:text-black text-white">Delete Box</button>
                 </div>
@@ -110,7 +110,7 @@
                         <p class="text-xs md:text-sm">This action won't delete any items.</p>
                     </div>
                     <div class="flex w-full justify-center items-center space-x-10 pb-4">
-                        <button @click.prevent="deleteBox" class="text-xs md:text-sm xl:text-base px-4 py-2 rounded-md bg-red-600 hover:bg-red-500 text-white">Delete</button>
+                        <button @click.prevent="destroyBox(box.id)" class="text-xs md:text-sm xl:text-base px-4 py-2 rounded-md bg-red-600 hover:bg-red-500 text-white">Delete</button>
                         <button @click.prevent="deleteConfirm= false" class="text-xs md:text-sm xl:text-base px-4 py-2 rounded-md bg-black text-white">Cancel</button>
                     </div>
             </div>
@@ -124,13 +124,13 @@ import axios from "axios";
 import {onMounted, reactive, ref} from "vue";
 import {request} from "../../helpers";
 import router from "../../router";
+import useLocations from "../../composables/locations";
+import useGroups from "../../composables/groups";
+import useBoxes from "../../composables/boxes";
 
 const props = defineProps(['id'])
-const box = ref([]);
-const groups = ref([]);
 const createItemModalOpen = ref(false);
 const deleteConfirm = ref(false);
-const locations = ref([]);
 const editBoxModalOpen = ref(false);
 const form = reactive({
     name:'',
@@ -142,27 +142,14 @@ const form = reactive({
 const errors = ref('');
 
 onMounted(() => {
-    getBox();
+    getBox(props.id);
     getLocations();
     getGroups();
 })
 
-const getBox = () => {
-    axios.get(`/api/boxes/${props.id}`)
-        .then(response => {
-            box.value = response.data.data;
-        })
-        .catch(error => {
-            console.log(error);
-        });
-}
-
-const getGroups = () => {
-    axios.get('/api/groups')
-        .then((response) => {
-            groups.value = response.data.data;
-        })
-}
+const { locations, getLocations } = useLocations()
+const { groups, getGroups } = useGroups()
+const { box, getBox, deleteBox} = useBoxes()
 
 const openCreateItemModal = () => {
     createItemModalOpen.value = true;
@@ -171,15 +158,15 @@ const closeCreateItemModal = () => {
     createItemModalOpen.value = false;
 }
 
-const getLocations = async () => {
-    const req = await request('get', '/api/locations')
-    locations.value = req.data.data;
-}
 const openEditBoxModal = () => {
     editBoxModalOpen.value = true;
 }
 const closeEditBoxModalOpen = () => {
     editBoxModalOpen.value = false;
+}
+
+const destroyBox = async (id) => {
+    await deleteBox(id)
 }
 
 const submitForm = () => {
@@ -210,10 +197,6 @@ const submitEditForm = async  () => {
         .catch((error) => {
             errors.value = 'Some data is missing';
         })
-}
-const deleteBox =  () => {
-     request('delete', `/api/boxes/${props.id}`);
-     router.push('/');
 }
 </script>
 

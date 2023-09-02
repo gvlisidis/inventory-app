@@ -1,10 +1,11 @@
 <template>
     <div class="qrcode-grid mx-auto mt-6 w-full">
         <div v-for="box in boxes" :key="box.id"
-             class="flex flex-col items-center justify-center p-1 bg-white text-black">
-            <qrcode-vue :value="box.uri" :size="200" level="H"/>
+             class="flex flex-col items-center  p-1 pt-3 bg-white text-black rounded">
+            <qrcode-vue :value="box.uri" :size="120" level="H"/>
             <div class="w-full mt-3 border-t-2 border-black text-center">
-                <p class="mt-4 tracking-widest text-3xl font-semibold ">#{{ box.id }} | {{ box.name }}</p>
+                <p class="mt-2  text-xl font-semibold ">#{{ box.id }}</p>
+                <p class="mt-1  text-lg font-semibold ">{{ box.name }}</p>
             </div>
         </div>
     </div>
@@ -33,6 +34,6 @@ onMounted(() => {
 .qrcode-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 }
 </style>

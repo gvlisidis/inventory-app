@@ -22,7 +22,11 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string'],
+            'group' => [],
+            'box_id' => [],
+            'location' => [],
+            'description' => [],
         ];
     }
 }

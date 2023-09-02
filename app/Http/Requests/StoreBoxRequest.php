@@ -22,7 +22,7 @@ class StoreBoxRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:20'],
+            'name' => ['required', 'string', 'max:15'],
             'location' => ['required', 'string'],
             'description' => ['nullable', 'sometimes', 'string'],
         ];

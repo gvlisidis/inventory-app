@@ -23,6 +23,10 @@ class StoreItemRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'group' => [],
+            'box_id' => [],
+            'location' => [],
+            'description' => [],
         ];
     }
 }

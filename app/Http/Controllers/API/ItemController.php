@@ -34,12 +34,14 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
+        $validated = $request->validated();
+
         $item = Item::create([
-            'name' => $request->name,
-            'box_id' => $request->box_id,
-            'location' => $request->location,
-            'group' => $request->group,
-            'description' => $request->description,
+            'name' => $validated['name'],
+            'group' => $validated['group'],
+            'box_id' => $validated['box_id'],
+            'location' => $validated['location'],
+            'description' => $validated['description'],
         ]);
 
         return new ItemResource($item);
@@ -66,28 +68,17 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
+        $validated = $request->validated();
+
         $item->update([
-            'name' => $request->name,
-            'group' => $request->group,
-            'box_id' => $request->box_id,
-            'location' => $this->prepareLocation($request, $item),
-            'description' => $request->description,
+            'name' => $validated['name'],
+            'group' => $validated['group'],
+            'box_id' => $validated['box_id'],
+            'location' => $item->prepareLocation($validated),
+            'description' => $validated['description'],
         ]);
 
         return new ItemResource($item);
-    }
-
-    private function prepareLocation(UpdateItemRequest $request, Item $item): string
-    {
-        if (!$request->box_id){
-            return $request->location;
-        }
-
-        if ($request->box_id !== $item->box_id){
-            return  Box::find($request->box_id)->location;
-        }
-
-        return $item->box->location;
     }
 
     /**

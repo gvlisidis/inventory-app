@@ -1,19 +1,13 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Home from "../pages/Home.vue";
 import Items from "../pages/items/ItemsIndex.vue";
-import BoxIndex from "../pages/boxes/BoxIndex.vue";
-import QRCodesList from "../pages/QRCodesList.vue";
+import BoxIndex from "../pages/boxes/BoxShow.vue";
+import QRCodesList from "../pages/qrcodes/QRCodesIndex.vue";
 import Login from "../pages/Login.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        // {
-        //     path: '/login',
-        //     name: 'login',
-        //     component: Login,
-        //     meta: {requiresAuth: false}
-        // },
         {
             path: '/',
             name: 'home',
@@ -41,21 +35,5 @@ const router = createRouter({
         },
     ],
 });
-
-// router.beforeEach((to, from, next) => {
-//
-//     if(to.matched.some(record => record.meta.requiresAuth)) {
-//         if (isAuthenticated()) {
-//             next()
-//             return
-//         }
-//         next({name: 'login'})
-//     } else {
-//         next()
-//     }
-// });
-function isAuthenticated() {
-    return Boolean(localStorage.getItem('APP_DEMO_USER_TOKEN'))
-}
 
 export default router;

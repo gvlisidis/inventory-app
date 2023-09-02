@@ -27,12 +27,11 @@
 import {onMounted, ref, watch} from "vue";
 import ItemCard from "../../components/ItemCard.vue";
 import axios from "axios";
-import {request} from "../../helpers";
+import useLocations from "../../composables/locations";
+import useGroups from "../../composables/groups";
 
 const items = ref([]);
 const searchTerm = ref('');
-const groups = ref([]);
-const locations = ref([]);
 const editMode = ref(false);
 
 onMounted(() => {
@@ -41,18 +40,13 @@ onMounted(() => {
     getLocations();
 });
 
+const { locations, getLocations } = useLocations()
+const { groups, getGroups } = useGroups()
+
 watch(searchTerm, (currentValue) => {
     search();
 })
 
-const getGroups = async  () => {
-    const req = await request('get', '/api/groups')
-    groups.value = req.data.data;
-}
-const getLocations = async () => {
-    const req = await request('get', '/api/locations')
-    locations.value = req.data.data;
-}
 const search = async () => {
     try {
         const response = await axios.get('/api/search', {
