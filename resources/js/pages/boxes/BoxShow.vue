@@ -110,7 +110,7 @@
                         <p class="text-xs md:text-sm">This action won't delete any items.</p>
                     </div>
                     <div class="flex w-full justify-center items-center space-x-10 pb-4">
-                        <button @click.prevent="destroyBox(box.id)" class="text-xs md:text-sm xl:text-base px-4 py-2 rounded-md bg-red-600 hover:bg-red-500 text-white">Delete</button>
+                        <button @click.prevent="deleteBox(box.id)" class="text-xs md:text-sm xl:text-base px-4 py-2 rounded-md bg-red-600 hover:bg-red-500 text-white">Delete</button>
                         <button @click.prevent="deleteConfirm= false" class="text-xs md:text-sm xl:text-base px-4 py-2 rounded-md bg-black text-white">Cancel</button>
                     </div>
             </div>
@@ -149,7 +149,7 @@ onMounted(() => {
 
 const { locations, getLocations } = useLocations()
 const { groups, getGroups } = useGroups()
-const { box, getBox, deleteBox} = useBoxes()
+const { box, getBox, destroyBox, updateBox} = useBoxes()
 
 const openCreateItemModal = () => {
     createItemModalOpen.value = true;
@@ -165,8 +165,8 @@ const closeEditBoxModalOpen = () => {
     editBoxModalOpen.value = false;
 }
 
-const destroyBox = async (id) => {
-    await deleteBox(id)
+const deleteBox = async (id) => {
+    await destroyBox(id)
 }
 
 const submitForm = () => {
@@ -186,6 +186,8 @@ const submitForm = () => {
 }
 
 const submitEditForm = async  () => {
+
+    await updateBox(props.id)
     await axios.put(`/api/boxes/${props.id}`, {
         name: box.value.name,
         location: box.value.location,

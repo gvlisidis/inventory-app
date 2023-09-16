@@ -6,6 +6,7 @@ import {useRouter} from "vue-router";
 export default function useBoxes() {
     const boxes = ref([])
     const box = ref([])
+    const errors = ref('')
 
     const router = useRouter()
     const getBoxes = async () => {
@@ -20,12 +21,24 @@ export default function useBoxes() {
             })
     }
 
-    const deleteBox =  async (id) => {
+    const updateBox = async (id) => {
+        try {
+            await axios.put(`/api/boxes/${id}`, box.value)
+        } catch (e) {
+            // if (e.response.status === 422) {
+            //     for (const key in e.response.data.errors) {
+            //         errors.value = e.response.data.errors
+            //     }
+            // }
+        }
+    }
+
+    const destroyBox =  async (id) => {
         await axios.delete(`/api/boxes/${id}`);
         router.push('/');
     }
 
     return {
-        boxes, box, getBox, getBoxes, deleteBox
+        errors, boxes, box, getBox, getBoxes, destroyBox, updateBox
     }
 }
