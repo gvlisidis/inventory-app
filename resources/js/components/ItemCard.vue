@@ -103,6 +103,8 @@ const submitEditItemForm = async  () => {
         description: item.description,
     })
         .then((response) => {
+            console.log(response.data, 666)
+            item.value =response.data.data;
             editItemModalOpen.value = false;
         })
         .catch((error) => {
