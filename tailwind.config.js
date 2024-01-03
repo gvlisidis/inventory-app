@@ -16,10 +16,19 @@ module.exports = {
                 'poppins': ['Poppins', 'sans-serif']
             },
             colors:{
-                'gray-color': '#ececec',
-                'green-color': '#9fd3c7',
-                'blue-color': '#385170',
-                'blue-dark-color': '#142d4c',
+                'curious-blue': {
+                    '50': '#eff9fc',
+                    '100': '#d6eff7',
+                    '200': '#b2dfef',
+                    '300': '#7dc7e3',
+                    '400': '#41a6cf',
+                    '500': '#2894c3',
+                    '600': '#226e98',
+                    '700': '#225b7c',
+                    '800': '#234b67',
+                    '900': '#224157',
+                    '950': '#11283b',
+                },
             },
             spacing:{
                 68: '17rem',

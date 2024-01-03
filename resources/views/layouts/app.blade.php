@@ -13,7 +13,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-poppins bg-gray-800 min-h-screen h-full {{ app()->environment('local') ? 'debug-screens' : '' }}">
+    <body class="font-poppins bg-curious-blue-800 min-h-screen h-full {{ app()->environment('local') ? 'debug-screens' : '' }}">
     {{ $slot }}
     </body>
 </html>

@@ -8,7 +8,7 @@
             </div>
             <div class="sm:right-0 sm:top-0 p-1 ">
                 <div class="mt-6 flex space-x-3 md:space-x-8">
-                    <button @click.prevent="openCreateItemModal" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md text-white bg-blue-color hover:bg-violet-200 hover:text-black">Add item</button>
+                    <button @click.prevent="openCreateItemModal" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md text-white bg-curious-blue-500 hover:bg-curious-blue-200 hover:text-black">Add item</button>
                     <button @click.prevent="openEditBoxModal" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md bg-green-600 hover:bg-green-300 hover:text-black text-white">Edit Box</button>
                     <button @click.prevent="deleteConfirm = true" type="button" class="text-xxs  md:text-sm xl:text-base px-2 md:px-4 py-2 rounded-md bg-red-600 hover:bg-red-300 hover:text-black text-white">Delete Box</button>
                 </div>
@@ -18,7 +18,7 @@
 
         <div class="items-grid mt-8 pb-8">
             <div v-for="item in box.items" :key="item.id" class="">
-                <div class="text-xs md:text-sm block mb-1 md:mb-4 p-4  rounded shadow bg-green-color  hover:bg-blue-color hover:text-white">
+                <div class="text-xs md:text-sm block mb-1 md:mb-4 p-4  rounded shadow bg-curious-blue-300  hover:bg-curious-blue-400 hover:text-white">
                     <h2 class="font-semibold tracking-wide">{{ item.name }}</h2>
                 </div>
             </div>

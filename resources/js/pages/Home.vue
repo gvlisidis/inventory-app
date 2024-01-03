@@ -1,7 +1,7 @@
 <template>
     <div class="mt-4 md:mt-10 flex flex-col-reverse md:flex-row md:justify-between">
         <button @click="openCreateBoxModal"
-                class="mt-2 md:mt-0 px-4 py-2 text-sm rounded-md bg-violet-200 hover:bg-violet-600 hover:text-white text-black">
+                class="mt-2 md:mt-0 px-4 py-2 text-sm rounded-md bg-curious-blue-200 hover:bg-curious-blue-400 hover:text-white text-black">
             Add New Box
         </button>
         <div class="flex items-center relative">
@@ -12,7 +12,7 @@
             </svg>
             <input type="text" v-model="searchTerm"
                    name="searchTerm" placeholder="Search for item"
-                   class=" rounded-md pl-8 pr-4 py-2 border-2 border-violet-600 focus:outline-0 focus:border-violet-600 focus:ring-violet-600 text-slate-800 text-xs md:text-sm w-full md:w-44 xl:w-60 2xl:w-96"
+                   class=" rounded-md pl-8 pr-4 py-2 border-2 border-curious-blue-600 focus:outline-0 focus:border-curious-blue-600 focus:ring-curious-blue-600 text-slate-800 text-xs md:text-sm w-full md:w-44 xl:w-60 2xl:w-96"
             />
         </div>
     </div>
