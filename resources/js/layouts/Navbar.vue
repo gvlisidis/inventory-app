@@ -56,7 +56,7 @@
                 </div>
                 <div class="border-t-2 border-violet-300 py-2">
                     <button @click="handleLogout"
-                            class="px-4  font-semibold ">
+                            class="px-4 font-semibold ">
                         Logout
                     </button>
                 </div>
@@ -69,6 +69,9 @@
 
 <script setup>
 import {ref} from "vue";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 
 const showDropdown = ref(false);
