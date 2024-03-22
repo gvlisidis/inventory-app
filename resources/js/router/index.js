@@ -3,7 +3,6 @@ import Home from "../pages/Home.vue";
 import Items from "../pages/items/ItemsIndex.vue";
 import BoxIndex from "../pages/boxes/BoxShow.vue";
 import QRCodesList from "../pages/qrcodes/QRCodesIndex.vue";
-import Login from "../pages/Login.vue";
 
 const router = createRouter({
     history: createWebHistory(),
