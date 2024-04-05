@@ -19,7 +19,7 @@
             </div>
             <button @click="handleLogout"
                     class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-violet-50 text-left">
-                Logouts
+                Logout
             </button>
         </div>
     </nav>
@@ -61,7 +61,7 @@
                 <div class="border-t-2 border-curious-blue-300 py-2">
                     <button @click="handleLogout"
                             class="px-4 font-semibold ">
-                        Logouts
+                        Logout
                     </button>
                 </div>
             </div>
