@@ -51,7 +51,7 @@ watch(searchTerm, (currentValue) => {
 
 const search = async () => {
     try {
-        const response = await axios.get('/api/search', {
+        const response = await axios.get('/search', {
             params: {
                 searchTerm: searchTerm.value
             }

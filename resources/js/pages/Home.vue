@@ -113,7 +113,7 @@ const closeCreateBoxModal = () => {
     createBoxModalOpen.value = false;
 }
 const submitForm = async () => {
-    await request('post', '/api/boxes', form)
+    await request('post', '/boxes', form)
         .then((response) => {
             createBoxModalOpen.value = false;
             boxes.value.push(response.data.data);
@@ -127,7 +127,7 @@ const submitForm = async () => {
 }
 const search = async () => {
     try {
-        const response = await axios.get('/api/search', {
+        const response = await axios.get('/search', {
             params: {
                 searchTerm: searchTerm.value
             }

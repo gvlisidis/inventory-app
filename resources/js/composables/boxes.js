@@ -10,12 +10,12 @@ export default function useBoxes() {
 
     const router = useRouter()
     const getBoxes = async () => {
-        let response = await axios.get('/api/boxes')
+        let response = await axios.get('/boxes')
         boxes.value = response.data.data
     }
 
     const getBox = async (id) => {
-       await axios.get(`/api/boxes/${id}`)
+       await axios.get(`/boxes/${id}`)
             .then(response => {
                 box.value = response.data.data;
             })
@@ -23,7 +23,7 @@ export default function useBoxes() {
 
     const updateBox = async (id) => {
         try {
-            await axios.put(`/api/boxes/${id}`, box.value)
+            await axios.put(`/boxes/${id}`, box.value)
         } catch (e) {
             // if (e.response.status === 422) {
             //     for (const key in e.response.data.errors) {
@@ -34,7 +34,7 @@ export default function useBoxes() {
     }
 
     const destroyBox =  async (id) => {
-        await axios.delete(`/api/boxes/${id}`);
+        await axios.delete(`/boxes/${id}`);
         router.push('/');
     }
 

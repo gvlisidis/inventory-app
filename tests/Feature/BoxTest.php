@@ -4,9 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Box;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class BoxTest extends TestCase
@@ -15,16 +12,16 @@ class BoxTest extends TestCase
     {
         Box::factory(5)->create();
 
-        $response = $this->get('/api/boxes');
+        $response = $this->get('/boxes');
 
-        $response->assertStatus(403);
+        $response->assertStatus(302);
     }
 
     public function test_authenticated_users_can_get_boxes(): void
     {
         Box::factory(5)->create();
 
-        $response = $this->actingAs(User::factory()->create())->get('/api/boxes');
+        $response = $this->actingAs(User::factory()->create())->get('/boxes');
 
         $response->assertStatus(200);
         $this->assertEquals(count($response['data']), 5);
@@ -32,12 +29,12 @@ class BoxTest extends TestCase
 
     public function test_unauthenticated_users_cannot_create_a_box(): void
     {
-        $response = $this->post('/api/boxes', [
+        $response = $this->post('/boxes', [
             'name' => 'Test name',
             'location' => 'Test location'
         ]);
 
-        $response->assertStatus(403);
+        $response->assertStatus(302);
     }
 
     public function test_authenticated_users_can_create_a_box(): void
@@ -45,7 +42,7 @@ class BoxTest extends TestCase
         Box::factory(22)->create();
         $boxesBefore = Box::all()->count();
         $this->assertEquals(22, $boxesBefore);
-        $response = $this->actingAs(User::factory()->create())->postJson('/api/boxes', [
+        $response = $this->actingAs(User::factory()->create())->postJson('/boxes', [
             'name' => 'Test name',
             'location' => 'Test location'
         ]);
@@ -61,7 +58,7 @@ class BoxTest extends TestCase
     public function test_a_box_requires_a_name(): void
     {
 
-        $response = $this->actingAs(User::factory()->create())->postJson('/api/boxes', [
+        $response = $this->actingAs(User::factory()->create())->postJson('/boxes', [
             'location' => 'Test location'
         ]);
 
@@ -74,7 +71,7 @@ class BoxTest extends TestCase
     public function test_a_box_requires_a_location(): void
     {
 
-        $response = $this->actingAs(User::factory()->create())->postJson('/api/boxes', [
+        $response = $this->actingAs(User::factory()->create())->postJson('/boxes', [
             'name' => 'Test name',
         ]);
 
@@ -92,18 +89,18 @@ class BoxTest extends TestCase
         $randomBox = $boxesBeforeCollection->random();
         $idOfRandom = $randomBox->id;
 
-        $response = $this->delete('/api/boxes/' . $randomBox->id);
+        $response = $this->delete('/boxes/' . $randomBox->id);
 
-        $response->assertStatus(403);
+        $response->assertStatus(302);
         $this->assertEquals(7, $boxesBeforeCollectionCount);
         $findRandom = Box::query()->where('id', $idOfRandom)->first();
         $this->assertNotNull($findRandom);
 
-        $response2 = $this->actingAs(User::factory()->create())->delete('/api/boxes/'. $randomBox->id);
-        $boxesafter = Box::all()->count();
+        $response2 = $this->actingAs(User::factory()->create())->delete('/boxes/' . $randomBox->id);
+        $boxesAfter = Box::all()->count();
 
-       $response2->assertStatus(204);
-        $this->assertEquals(6, $boxesafter);
+        $response2->assertStatus(204);
+        $this->assertEquals(6, $boxesAfter);
 
         $findSecond = Box::query()->where('id', $idOfRandom)->first();
 

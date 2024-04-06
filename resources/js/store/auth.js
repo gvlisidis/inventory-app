@@ -18,14 +18,14 @@ export const useAuthStore = defineStore("auth", {
         },
         async getUser() {
             await this.getToken()
-            await axios.get('/api/user')
+            await axios.get('/user')
                 .then((response) => {
                     this.authUser = response.data.data;
                 });
         },
         async login(data) {
             await this.getToken();
-            await axios.post('/api/login', data)
+            await axios.post('/login', data)
                 .then((response) => {
                     if (response.status === 200 && response.data && response.data.token) {
                         localStorage.setItem('APP_DEMO_USER_TOKEN', response.data.token)

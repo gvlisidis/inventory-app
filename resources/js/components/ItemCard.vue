@@ -90,12 +90,12 @@ const closeEditItemModal = () => {
 }
 
 const getBoxes = async () => {
-    const req = await request('get', '/api/boxes')
+    const req = await request('get', '/boxes')
     boxes.value = req.data.data;
 }
 
 const submitEditItemForm = async  () => {
-    await axios.put(`/api/items/${item.id}`, {
+    await axios.put(`/items/${item.id}`, {
         name: item.name,
         group: item.group,
         box_id: item.box_id,
