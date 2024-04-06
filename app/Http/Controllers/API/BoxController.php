@@ -33,7 +33,7 @@ class BoxController extends Controller
      */
     public function store(StoreBoxRequest $request, CreateBoxAction $action)
     {
-        $this->authorize('create', Box::class);
+        //$this->authorize('create', Box::class);
 
         try{
             $box = $action->handle($request->validated());
