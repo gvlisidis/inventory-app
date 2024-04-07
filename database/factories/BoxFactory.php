@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\Location;
+use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Team\CreateTeamAction;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\User;
@@ -29,24 +30,19 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'team' => ['nullable', 'sometimes', 'string', 'max:100'],
+            'team' => ['required', 'string', 'min:4', 'max:100'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        if ($request->team) {
-            $team = Team::create([
-                'name' => $request->team,
-            ]);
-        }
+       $team = app(CreateTeamAction::class)->create($request->team);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'team_id' => isset($team) ? $team->id : null,
             'password' => Hash::make($request->password),
         ]);
 
-        //event(new Registered($user));
+        $team->users()->attach($user);
 
         Auth::login($user);
 

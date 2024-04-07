@@ -18,12 +18,13 @@
             </div>
 
             <div class="mt-4">
-                <x-input-label for="team" :value="__('Team (Optional)')" />
+                <x-input-label for="team" :value="__('Team')" />
 
                 <x-text-input id="team" class="block mt-1 w-full"
                               :value="old('team')"
                               type="text"
                               name="team"
+                              required
                               autocomplete="team" />
             </div>
 
