@@ -1,6 +1,5 @@
 import {ref} from "vue";
 import axios from "axios";
-import {request} from "../helpers";
 import {useRouter} from "vue-router";
 
 export default function useBoxes() {

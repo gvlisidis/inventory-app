@@ -13,6 +13,10 @@ Route::middleware(['auth'])->group(function (){
         return view('dashboard');
     });
 
+    Route::get('/user', function (){
+        return new \App\Http\Resources\UserResource(auth()->user());
+    });
+
     Route::get('boxes', [BoxController::class, 'index']);
     Route::get('boxes/{box}', [BoxController::class, 'show']);
     Route::post('boxes', [BoxController::class, 'store']);

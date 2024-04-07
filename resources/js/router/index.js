@@ -3,6 +3,7 @@ import Home from "../pages/Home.vue";
 import Items from "../pages/items/ItemsIndex.vue";
 import BoxIndex from "../pages/boxes/BoxShow.vue";
 import QRCodesList from "../pages/qrcodes/QRCodesIndex.vue";
+import Dashboard from "../pages/Dashboard.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,6 +12,12 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: Home,
+            meta: {requiresAuth: true}
+        },
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            component: Dashboard,
             meta: {requiresAuth: true}
         },
         {

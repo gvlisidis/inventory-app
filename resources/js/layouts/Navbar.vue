@@ -4,8 +4,15 @@
         class="overflow-hidden h-screen min-h-full sticky left-0 top-0 min-w-fit w-2/12  bg-curious-blue-300 hidden md:block">
         <div class="flex flex-col justify-between h-full">
             <div class="flex flex-col">
+                <div class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-curious-blue-50 hover:cursor-pointer">
+                    <p v-if="userHasLoaded" class="text-sm">{{ authUser.name }}</p>
+                </div>
+                <router-link to="/dashboard"
+                             class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-curious-blue-50h over:cursor-pointer">
+                    Dashboard
+                </router-link>
                 <router-link to="/"
-                             class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-curious-blue-50 hover:cursor-pointer">
+                             class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-curious-blue-50 hover:cursor-pointer">
                     Boxes
                 </router-link>
                 <router-link to="/items"
@@ -72,13 +79,27 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
+import {useAuthStore} from "../store/auth";
+import axios from "axios";
 
 const router = useRouter();
 
-
 const showDropdown = ref(false);
+const authUser = ref(null);
+const userHasLoaded = ref(false);
+
+onMounted(() => {
+    getUser();
+})
+const getUser =  () => {
+     axios.get('/user')
+        .then((response) => {
+            authUser.value = response.data.data;
+            userHasLoaded.value = true;
+        });
+}
 
 const handleLogout = () => {
     axios.post('logout');
