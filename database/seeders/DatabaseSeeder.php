@@ -19,12 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $u1 = User::factory()->create([
-            'name' => 'George Vlisidis',
-            'email' => 'gv@mail.com',
-        ]);
 
-        $u2 = User::factory()->create([
+        $u1 = User::factory()->create([
             'name' => 'Zina Skoufa',
             'email' => 'zs@mail.com',
         ]);
@@ -33,18 +29,31 @@ class DatabaseSeeder extends Seeder
         $groups = Group::getAllValues();
         $locations = Location::getAllValues();
 
-        $team->users()->attach([$u1->id, $u2->id]);
+        $u2 = User::factory()->create([
+            'name' => 'George Vlisidis',
+            'email' => 'gv@mail.com',
+            'team_id' => $team->id,
+        ]);
 
 
         for ($i = 0; $i < 8; $i++) {
             Box::factory()->create(['team_id' => $team->id,]);
+            Box::factory()->create(['user_id' => rand(1,2) === 1 ? $u1->id : $u2->id,]);
         }
 
         $boxes = Box::all();
 
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             Item::factory()->create([
-                'box_id' => rand(1, 2) === 1 ? $boxes->random()->id : null,
+                'box_id' => $boxes->random()->id,
+            ]);
+
+            Item::factory()->create([
+                'team_id' => $team->id,
+            ]);
+
+            Item::factory()->create([
+                'user_id' => $u1->id,
             ]);
         }
 

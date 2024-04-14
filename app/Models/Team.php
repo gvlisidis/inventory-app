@@ -14,9 +14,9 @@ class Team extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function users(): BelongsToMany
+    public function users(): HasMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->hasMany(User::class);
     }
 
     public function boxes(): HasMany
@@ -24,7 +24,12 @@ class Team extends Model
         return $this->hasMany(Box::class);
     }
 
-    public function items(): HasManyThrough
+     public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function boxItems(): HasManyThrough
     {
         return $this->hasManyThrough(Item::class, Box::class);
     }

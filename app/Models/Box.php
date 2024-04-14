@@ -24,4 +24,9 @@ class Box extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

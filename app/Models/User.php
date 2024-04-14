@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -20,8 +21,21 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function teams(): BelongsToMany
+    public function team(): BelongsTo
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsTo(Team::class);
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+    public function boxes(): HasMany
+    {
+        return $this->hasMany(Box::class);
+    }
+    public function boxItems(): HasManyThrough
+    {
+        return $this->hasManyThrough(Item::class, Box::class);
     }
 }
