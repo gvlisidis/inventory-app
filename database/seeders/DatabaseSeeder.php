@@ -25,25 +25,27 @@ class DatabaseSeeder extends Seeder
             'email' => 'zs@mail.com',
         ]);
 
-        $team = Team::create(['name' => 'Family']);
-        $groups = Group::getAllValues();
-        $locations = Location::getAllValues();
-
         $u2 = User::factory()->create([
             'name' => 'George Vlisidis',
             'email' => 'gv@mail.com',
-            'team_id' => $team->id,
         ]);
 
+        $team = Team::create(['name' => 'Family', 'owner_id' => $u2->id]);
+        $u2->update(['team_id' => $team->id]);
+        $groups = Group::getAllValues();
+        $locations = Location::getAllValues();
 
-        for ($i = 0; $i < 8; $i++) {
-            Box::factory()->create(['team_id' => $team->id,]);
-            Box::factory()->create(['user_id' => rand(1,2) === 1 ? $u1->id : $u2->id,]);
+        for ($i = 0; $i < 20; $i++) {
+            if (rand(1,2) === 1) {
+                Box::factory()->create(['user_id' =>   $u1->id ]);
+            } else {
+                Box::factory()->create(['team_id' => $team->id ]);
+            }
         }
 
         $boxes = Box::all();
 
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 40; $i++) {
             Item::factory()->create([
                 'box_id' => $boxes->random()->id,
             ]);

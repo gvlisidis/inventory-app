@@ -10,6 +10,7 @@ class CreateTeamAction
     {
         return Team::create([
             'name' => $data,
+            'owner_id' => auth()->id(),
         ]);
     }
 }

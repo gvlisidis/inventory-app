@@ -171,7 +171,7 @@ const deleteBox = async (id) => {
 
 const submitForm = () => {
     form.box_id = box.value.id;
-    axios.post('/items', form)
+    axios.post('/api/items', form)
         .then((response) => {
             box.value.items.push(response.data.data);
             createItemModalOpen.value = false;
@@ -188,7 +188,7 @@ const submitForm = () => {
 const submitEditForm = async  () => {
 
     await updateBox(props.id)
-    await axios.put(`/boxes/${props.id}`, {
+    await axios.put(`/api/boxes/${props.id}`, {
         name: box.value.name,
         location: box.value.location,
         description: box.value.description,

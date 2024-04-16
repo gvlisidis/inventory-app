@@ -5,6 +5,9 @@
  */
 
 import axios from 'axios';
+axios.defaults.withCredentials = true;
+
+axios.defaults.baseURL = "http://inventory-app.test";
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

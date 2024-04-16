@@ -10,32 +10,36 @@ export const useAuthStore = defineStore("auth", {
     }),
     getters: {
         user: (state) => state.authUser,
-        isLoggedin: (state) => state.isAuthenticated,
+        isLoggedIn: (state) => state.isAuthenticated,
     },
     actions: {
         async getToken() {
             await axios.get('/sanctum/csrf-cookie');
         },
         async getUser() {
-            await axios.get('/user')
+            await axios.get('/api/user')
                 .then((response) => {
                     console.log(response.data.data)
                     this.authUser = response.data.data;
                 });
         },
         async login(data) {
+            console.log(998)
             await this.getToken();
             await axios.post('/login', data)
                 .then((response) => {
+                    console.log(566, response)
                     if (response.status === 200 && response.data && response.data.token) {
+                        console.log(555)
                         localStorage.setItem('APP_DEMO_USER_TOKEN', response.data.token)
                         this.authUser = response.data.user;
                         this.isAuthenticated = true;
-                        router.push('/')
+                        console.log(22, this.authUser, this.isAuthenticated)
+                        this.router.push('/')
                     }
                 })
                 .catch((error) => {
-                    router.push('/login');
+                    this.router.push('/login');
                 });
         }
     }

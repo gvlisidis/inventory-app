@@ -95,7 +95,7 @@ const getBoxes = async () => {
 }
 
 const submitEditItemForm = async  () => {
-    await axios.put(`/items/${item.id}`, {
+    await axios.put(`/api/items/${item.id}`, {
         name: item.name,
         group: item.group,
         box_id: item.box_id,

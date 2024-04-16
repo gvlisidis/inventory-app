@@ -19,7 +19,7 @@ import QrcodeVue from 'qrcode.vue'
 
 const boxes = ref([]);
 const getBoxes = () => {
-    axios.get('/boxes')
+    axios.get('/api/boxes')
         .then((response) => {
             boxes.value = response.data.data;
         })

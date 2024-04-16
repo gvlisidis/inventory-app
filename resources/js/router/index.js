@@ -4,6 +4,11 @@ import Items from "../pages/items/ItemsIndex.vue";
 import BoxIndex from "../pages/boxes/BoxShow.vue";
 import QRCodesList from "../pages/qrcodes/QRCodesIndex.vue";
 import Dashboard from "../pages/Dashboard.vue";
+import Login from "../pages/Login.vue";
+import {useAuthStore} from "../store/auth";
+
+// import { isAuthenticated } from '../composables/auth';
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,6 +18,12 @@ const router = createRouter({
             name: 'home',
             component: Home,
             meta: {requiresAuth: true}
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login,
+            meta: {requiresAuth: false}
         },
         {
             path: '/dashboard',
@@ -40,6 +51,15 @@ const router = createRouter({
             meta: {requiresAuth: true}
         },
     ],
+});
+
+router.beforeEach((to, from, next) => {
+    const authStore = useAuthStore();
+    if (to.meta.requiresAuth && !authStore.isLoggedIn) {
+        next('/login');
+    } else {
+        next();
+    }
 });
 
 export default router;

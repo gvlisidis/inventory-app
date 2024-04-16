@@ -94,7 +94,7 @@ onMounted(() => {
     getUser();
 })
 const getUser =  () => {
-     axios.get('/user')
+     axios.get('/api/user')
         .then((response) => {
             authUser.value = response.data.data;
             userHasLoaded.value = true;
