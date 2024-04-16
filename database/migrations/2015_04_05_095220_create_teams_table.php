@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('box_id')->nullable();
-            $table->foreignId('team_id')->nullable();
-            $table->foreignId('user_id')->nullable();
             $table->string('name');
-            $table->string('group')->nullable();
-            $table->string('location')->nullable();
-            $table->text('description')->nullable();
+            $table->unsignedBigInteger('owner_id')->nullable();
+            $table->foreign('owner_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('teams');
     }
 };

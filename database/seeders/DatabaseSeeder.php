@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\Group;
+use App\Enums\Location;
+use App\Models\Box;
+use App\Models\Item;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -14,20 +19,43 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $u1 = User::factory()->create([
+            'name' => 'Zina Skoufa',
+            'email' => 'zs@mail.com',
+        ]);
+
+        $u2 = User::factory()->create([
             'name' => 'George Vlisidis',
             'email' => 'gv@mail.com',
         ]);
 
-        User::factory()->create([
-            'name' => 'Zina Skoufa',
-            'email' => 'zs@mail.com',
-        ]);
-        Model::unguard();
+        $team = Team::create(['name' => 'Family', 'owner_id' => $u2->id]);
+        $u2->update(['team_id' => $team->id]);
+        $groups = Group::getAllValues();
+        $locations = Location::getAllValues();
 
-        $this->call(BoxSeeder::class);
-        $this->call(ItemSeeder::class);
+        for ($i = 0; $i < 20; $i++) {
+            if (rand(1,2) === 1) {
+                Box::factory()->create(['user_id' =>   $u1->id ]);
+            } else {
+                Box::factory()->create(['team_id' => $team->id ]);
+            }
+        }
 
-        Model::reguard();
+        $boxes = Box::all();
+
+        for ($i = 0; $i < 40; $i++) {
+            Item::factory()->create([
+                'box_id' => $boxes->random()->id,
+            ]);
+
+            Item::factory()->create([
+                'team_id' => $team->id,
+            ]);
+
+            Item::factory()->create([
+                'user_id' => $u1->id,
+            ]);
+        }
     }
 }

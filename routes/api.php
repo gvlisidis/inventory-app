@@ -37,7 +37,3 @@ Route::post('items', [ItemController::class, 'store']);
 Route::put('items/{item}', [ItemController::class, 'update']);
 
 Route::get('search', [SearchController::class, 'index']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-
-});

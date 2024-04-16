@@ -10,7 +10,7 @@ export const useAuthStore = defineStore("auth", {
     }),
     getters: {
         user: (state) => state.authUser,
-        isLoggedin: (state) => state.isAuthenticated,
+        isLoggedIn: (state) => state.isAuthenticated,
     },
     actions: {
         async getToken() {
@@ -38,5 +38,6 @@ export const useAuthStore = defineStore("auth", {
                     router.push('/login');
                 });
         }
-    }
+    },
+    persist: true,
 });

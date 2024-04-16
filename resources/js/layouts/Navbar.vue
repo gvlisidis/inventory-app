@@ -4,15 +4,20 @@
         class="overflow-hidden h-screen min-h-full sticky left-0 top-0 min-w-fit w-2/12  bg-curious-blue-300 hidden md:block">
         <div class="flex flex-col justify-between h-full">
             <div class="flex flex-col">
-                <router-link to="/"
-                             class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-curious-blue-50 hover:cursor-pointer">
+                <div v-show="userFetched" class="px-4 py-2 font-semibold border-curious-blue-50">
+                    {{ authStore.user.name }}
+                </div>
+                <router-link to="/" active-class="bg-curious-blue-600 text-white"
+                             class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-curious-blue-50 hover:cursor-pointer">
                     Boxes
                 </router-link>
                 <router-link to="/items"
+                             active-class="bg-curious-blue-600 text-white"
                              class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-curious-blue-50 hover:cursor-pointer">
                     Items
                 </router-link>
                 <router-link to="/qrcodes"
+                             active-class="bg-curious-blue-600 text-white"
                              class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-b border-curious-blue-50 hover:cursor-pointer">
                     QR Codes
                 </router-link>
@@ -72,10 +77,24 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
+import {useAuthStore} from "../store/auth";
 
 const router = useRouter();
+const authStore = useAuthStore();
+const userFetched = ref(false)
+
+onMounted(() => {
+    getUser();
+})
+
+const getUser = async () => {
+    await axios.get('/api/user').then((response) => {
+        authStore.authUser = response.data.data;
+        userFetched.value = true;
+    })
+}
 
 
 const showDropdown = ref(false);

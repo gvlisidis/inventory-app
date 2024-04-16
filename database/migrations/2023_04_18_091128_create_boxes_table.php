@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->string('name');
             $table->string('uri')->nullable();
             $table->string('location')->nullable();

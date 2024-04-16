@@ -3,6 +3,7 @@ import  {createApp, markRaw} from 'vue';
 import router from "./router";
 import App from "./App.vue";
 import {createPinia} from "pinia";
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 const pinia = createPinia();
 
@@ -12,7 +13,7 @@ pinia.use(({ store }) => {
 
 
 const app = createApp(App);
-
+pinia.use(piniaPluginPersistedstate)
 
 app.use(router);
 app.use(pinia);

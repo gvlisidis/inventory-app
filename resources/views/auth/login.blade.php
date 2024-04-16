@@ -25,18 +25,15 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300  shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ml-2 text-sm">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
             <div class="flex items-center justify-end mt-4">
-                <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
+                <p class="text-sm">
+                    Not have an account? Go to <a href="{{ route('register') }}" class="underline">register</a>.
+                </p>
+                <div class="flex items-center justify-end ml-4">
+                    <x-primary-button class="">
+                        {{ __('Log in') }}
+                    </x-primary-button>
+                </div>
             </div>
         </form>
     </div>

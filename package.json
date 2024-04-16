@@ -20,6 +20,7 @@
         "@vitejs/plugin-vue": "^4.1.0",
         "lodash": "^4.17.21",
         "pinia": "^2.0.34",
+        "pinia-plugin-persistedstate": "^3.2.1",
         "qrcode.vue": "^3.4.0",
         "vue": "^3.2.47",
         "vue-router": "^4.1.6"
