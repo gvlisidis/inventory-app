@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use App\Actions\Box\CreateBoxAction;
+use App\Actions\Box\GetBoxesAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBoxRequest;
 use App\Http\Requests\UpdateBoxRequest;
 use App\Http\Resources\BoxResource;
 use App\Models\Box;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use function PHPUnit\Framework\isEmpty;
 
 class BoxController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    final public function index(): ResourceCollection
+    final public function index(GetBoxesAction $action): ResourceCollection
     {
-        return BoxResource::collection(Box::all());
+        $boxes = $action->getBoxes(auth()->user()->team);
+
+        return BoxResource::collection($boxes);
     }
 
     /**
@@ -33,8 +34,6 @@ class BoxController extends Controller
      */
     public function store(StoreBoxRequest $request, CreateBoxAction $action)
     {
-        //$this->authorize('create', Box::class);
-
         try{
             $box = $action->handle($request->validated());
 

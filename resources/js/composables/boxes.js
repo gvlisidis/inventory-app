@@ -15,21 +15,22 @@ export default function useBoxes() {
     }
 
     const getBox = async (id) => {
-       await axios.get(`/api/boxes/${id}`)
-            .then(response => {
-                box.value = response.data.data;
-            })
+        try{
+            await axios.get(`/api/boxes/${id}`)
+                .then(response => {
+                    box.value = response.data.data;
+                });
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     const updateBox = async (id) => {
         try {
             await axios.put(`/api/boxes/${id}`, box.value)
         } catch (e) {
-            // if (e.response.status === 422) {
-            //     for (const key in e.response.data.errors) {
-            //         errors.value = e.response.data.errors
-            //     }
-            // }
+            console.log(e)
         }
     }
 

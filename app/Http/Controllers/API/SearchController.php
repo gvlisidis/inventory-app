@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Actions\Box\GetBoxesAction;
+use App\Actions\Item\GetItemsAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
@@ -11,13 +13,7 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $searchTerm = $request->searchTerm;
-
-        $items = Item::query()
-            ->when($searchTerm, function ($q) use ($searchTerm) {
-                $q->where('name', 'LIKE', '%' . $searchTerm . '%');
-            })
-            ->get();
+        $items = app(GetItemsAction::class)->getItems($request->searchTerm);
 
         return ItemResource::collection($items);
     }
