@@ -21,6 +21,10 @@
                              class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-b border-curious-blue-50 hover:cursor-pointer">
                     QR Codes
                 </router-link>
+                <router-link to="/dashboard" active-class="bg-curious-blue-600 text-white"
+                             class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-b border-curious-blue-50 hover:cursor-pointer">
+                    Dashboard
+                </router-link>
             </div>
             <button @click="handleLogout"
                     class="px-4 py-2 hover:bg-curious-blue-600 hover:text-white font-semibold border-t border-violet-50 text-left">
@@ -61,6 +65,12 @@
                     <router-link to="/qrcodes"
                                  class="px-4 font-semibold ">
                         QR Codes
+                    </router-link>
+                </div>
+                <div class="py-2 hover:bg-curious-blue-300 hover:cursor-pointer" @click="showDropdown = false">
+                    <router-link to="/dashboard"
+                                 class="px-4 font-semibold ">
+                        Dashboard
                     </router-link>
                 </div>
                 <div class="border-t-2 border-curious-blue-300 py-2">

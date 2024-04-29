@@ -5,6 +5,8 @@ use App\Http\Controllers\API\GroupController;
 use App\Http\Controllers\API\ItemController;
 use App\Http\Controllers\API\LocationController;
 use App\Http\Controllers\API\SearchController;
+use App\Http\Controllers\API\TeamController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('user', function (Request $request){
-    return new \App\Http\Resources\UserResource($request->user());
-});
+Route::get('user', [UserController::class, 'index']);
+Route::put('users/{user}', [UserController::class, 'update']);
+
+Route::get('/team', [TeamController::class, 'index']);
 
 Route::get('boxes', [BoxController::class, 'index']);
 Route::get('boxes/{box}', [BoxController::class, 'show']);
@@ -37,3 +40,5 @@ Route::post('items', [ItemController::class, 'store']);
 Route::put('items/{item}', [ItemController::class, 'update']);
 
 Route::get('search', [SearchController::class, 'index']);
+
+
