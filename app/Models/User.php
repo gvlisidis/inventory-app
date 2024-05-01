@@ -38,4 +38,13 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Item::class, Box::class);
     }
+
+    public function isTeamOwner()
+    {
+        if (!$this->team) {
+            return false;
+        }
+
+        return $this->id === $this->team->owner_id;
+    }
 }

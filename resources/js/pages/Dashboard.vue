@@ -2,7 +2,7 @@
 import {onMounted, reactive, ref} from "vue";
 import {useAuthStore} from "../store/auth";
 import TeamArea from "../components/profile/TeamArea.vue";
-
+const successMessage = ref('');
 const authStore = useAuthStore();
 const errors = ref([]);
 let updateProfileMode = ref(false);
@@ -25,10 +25,13 @@ const updateUser = async () => {
     })
         .then((response) => {
             authStore.authUser = response.data.data;
+            successMessage.value = 'Team member added successfully';
             updateProfileMode.value = false;
+            setTimeout(() => {
+                successMessage.value = '';
+            },2000)
         })
         .catch((error) => {
-            console.log();
             errors.value = error.response.data.errors;
         })
 }
@@ -36,9 +39,12 @@ const updateUser = async () => {
 </script>
 
 <template>
-    <div class="mt-4 md:mt-10 flex flex-col space-y-8 text-white">
+    <div class="mt-4 md:mt-10 flex flex-col text-white">
         <div>
             <h2 class="text-lg">Profile</h2>
+            <div v-if="successMessage" class="absolute w-full text-center top-3">
+                <p class="text-sm text-curious-blue-200">{{ successMessage }}</p>
+            </div>
             <div class="flex flex-col space-y-4 mt-4" v-if="!updateProfileMode">
                 <div class="flex space-x-2">
                     <p>Name</p>
@@ -87,7 +93,9 @@ const updateUser = async () => {
                 </form>
             </div>
         </div>
-        <hr>
-       <TeamArea></TeamArea>
+        <div class="mt-4" v-if="authStore.user.is_team_owner">
+            <div class="border-t border-gray-300"></div>
+            <TeamArea></TeamArea>
+        </div>
     </div>
 </template>

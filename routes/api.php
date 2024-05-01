@@ -23,8 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('user', [UserController::class, 'index']);
 Route::put('users/{user}', [UserController::class, 'update']);
+Route::post('/users/{team}/add-member', [UserController::class, 'addMember']);
+
 
 Route::get('/team', [TeamController::class, 'index']);
+
 
 Route::get('boxes', [BoxController::class, 'index']);
 Route::get('boxes/{box}', [BoxController::class, 'show']);

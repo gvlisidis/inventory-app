@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
 
         $team = Team::create(['name' => 'Family', 'owner_id' => $u2->id]);
         $u2->update(['team_id' => $team->id]);
+        User::factory(4)->create([
+            'team_id' => $team->id,
+        ]);
         $groups = Group::getAllValues();
         $locations = Location::getAllValues();
 
