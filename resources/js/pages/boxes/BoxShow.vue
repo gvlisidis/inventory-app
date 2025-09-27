@@ -18,7 +18,7 @@
 
         <div class="items-grid mt-8 pb-8">
             <div v-for="item in box.items" :key="item.id" class="">
-                <div class="text-xs md:text-sm block mb-1 md:mb-4 p-4  rounded shadow bg-curious-blue-300  hover:bg-curious-blue-400 hover:text-white">
+                <div class="text-xs md:text-sm block mb-1 md:mb-4 p-4  rounded-sm shadow-sm bg-curious-blue-300  hover:bg-curious-blue-400 hover:text-white">
                     <h2 class="font-semibold tracking-wide">{{ item.name }}</h2>
                 </div>
             </div>
@@ -27,7 +27,7 @@
 
         <div v-if="createItemModalOpen" class="overflow-y-auto transition-opacity text-black">
             <div class="bg-gray-300 opacity-70 fixed inset-0" @click="closeCreateItemModal"></div>
-            <div class="flex flex-col m-auto h-fit max-w-[300px] md:max-w-sm lg:max-w-lg xl:max-w-xl bg-white space-y-2 md:space-y-6 fixed inset-0  rounded-sm" >
+            <div class="flex flex-col m-auto h-fit max-w-[300px] md:max-w-sm lg:max-w-lg xl:max-w-xl bg-white space-y-2 md:space-y-6 fixed inset-0  rounded-xs" >
                 <button @click="closeCreateItemModal" class="absolute right-3 top-3 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -68,7 +68,7 @@
 
         <div v-if="editBoxModalOpen" class="overflow-y-auto transition-opacity text-black">
             <div class="bg-gray-300 opacity-70 fixed inset-0" @click="closeEditBoxModalOpen"></div>
-            <div class="flex flex-col m-auto h-fit max-w-[300px] md:max-w-sm lg:max-w-lg xl:max-w-xl space-y-2 md:space-y-6 fixed inset-0 bg-white  rounded-sm">
+            <div class="flex flex-col m-auto h-fit max-w-[300px] md:max-w-sm lg:max-w-lg xl:max-w-xl space-y-2 md:space-y-6 fixed inset-0 bg-white  rounded-xs">
                 <button @click="closeEditBoxModalOpen" class="absolute right-3 top-3 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />

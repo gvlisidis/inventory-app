@@ -1,7 +1,7 @@
 <template>
     <div class="qrcode-grid mx-auto mt-6 w-full">
         <div v-for="box in boxes" :key="box.id"
-             class="flex flex-col items-center  p-1 pt-3 bg-white text-black rounded">
+             class="flex flex-col items-center  p-1 pt-3 bg-white text-black rounded-sm">
             <qrcode-vue :value="box.uri" :size="120" level="H"/>
             <div class="w-full mt-3 border-t-2 border-black text-center">
                 <p class="mt-2  text-xl font-semibold ">#{{ box.id }}</p>

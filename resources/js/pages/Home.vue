@@ -36,7 +36,7 @@
     <div v-if="createBoxModalOpen" class="overflow-y-auto transition-opacity text-black">
         <div class="bg-gray-300 opacity-70 fixed inset-0" @click="closeCreateBoxModal"></div>
         <div
-            class="flex flex-col m-auto h-fit max-w-sm md:max-w-lg xl:max-w-xl bg-white space-y-6 fixed inset-0 bg-white  rounded-sm">
+            class="flex flex-col m-auto h-fit max-w-sm md:max-w-lg xl:max-w-xl bg-white space-y-6 fixed inset-0 bg-white  rounded-xs">
             <button @click="closeCreateBoxModal" class="absolute right-3 top-3 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                      stroke="currentColor" class="w-4 h-4">
