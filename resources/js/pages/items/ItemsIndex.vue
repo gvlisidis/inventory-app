@@ -1,6 +1,6 @@
 <template>
     <div class="relative flex flex-col justify-between">
-        <div class="sticky pt-10 pb-10 h-20 z-111111111 bg-curious-blue-800 top-0 bottom-0 left-0 right-0 w-full flex flex-col-reverse md:flex-row items-start md:items-center md:justify-between">
+        <div class="sticky pt-10 pb-10 h-20 bg-curious-blue-800 top-0 bottom-0 left-0 right-0 w-full flex flex-col-reverse md:flex-row items-start md:items-center md:justify-between">
             <div class="mt-2 md:mt-0">
                 <button @click="editMode = !editMode"
                         class="rounded-md bg-red-600 text-white px-3 py-2 text-xs md:text-sm font-semibold tracking-wider">

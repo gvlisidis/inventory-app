@@ -11,9 +11,9 @@
         </div>
     </div>
 
-    <div v-if="editItemModalOpen" class="overflow-y-auto transition-opacity text-black ">
-        <div class="bg-gray-300 opacity-70 fixed inset-0" @click.prevent="closeEditItemModal"></div>
-        <div class="z-50 flex flex-col m-auto h-fit max-w-[300px] md:max-w-sm lg:max-w-lg xl:max-w-xl bg-white space-y-2 md:space-y-6 fixed inset-0  rounded-xs" >
+    <div v-if="editItemModalOpen" class="overflow-y-auto transition-opacity text-black">
+        <div class="bg-gray-800 opacity-70 fixed inset-0 z-20" @click.prevent="closeEditItemModal"></div>
+        <div class="z-30 flex flex-col m-auto h-fit max-w-[300px] md:max-w-sm lg:max-w-lg xl:max-w-xl bg-white space-y-2 md:space-y-6 fixed inset-0  rounded-xs" >
             <button @click.prevent="closeEditItemModal" class="absolute right-3 top-3 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
